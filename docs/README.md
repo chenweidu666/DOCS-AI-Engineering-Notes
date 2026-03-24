@@ -10,7 +10,7 @@
 |------|------|
 | 1. 基础层 | 1.1–1.4：动机与缩放 / Transformer / 主流选型 / 趋势与参考 |
 | 2. 训练与微调 | 数据处理与预训练 / SFT / LoRA / RLHF / 分布式训练 |
-| 3. 部署与推理 | KV Cache 与推理加速 / vLLM / 量化 / 端侧部署 |
+| 3. 部署与推理 | KV Cache 与推理加速 / vLLM / 量化 |
 | 4. RAG 与知识库 | RAG / Milvus / LangChain |
 | 5. Agent 开发 | 工作流 / MCP / Dify / AppAgent（OpenClaw 见第 7 章） |
 | 6. 工程化 | FastAPI / Docker / CI/CD |

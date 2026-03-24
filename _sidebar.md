@@ -23,7 +23,6 @@
   * [3.1 KV Cache 与推理加速](docs/03_部署与推理/3.1_KVCache与推理加速.md)
   * [3.2 vLLM 推理部署](docs/03_部署与推理/3.2_vLLM推理部署.md)
   * [3.3 INT4/INT8 量化](docs/03_部署与推理/3.3_INT量化.md)
-  * [3.4 端侧部署（TVM / ONNX / MNN）](docs/03_部署与推理/3.4_端侧部署.md)
 
 ---
 
