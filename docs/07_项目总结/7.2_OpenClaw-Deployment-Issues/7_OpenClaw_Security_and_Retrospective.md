@@ -1,13 +1,17 @@
 <!-- 文档同步自 https://github.com/chenweidu666/OpenClaw-Deployment-Issues 分支 main — 请勿手工与上游长期双轨编辑 -->
 
-<h1 align="center">OpenClaw 安全加固与项目复盘</h1>
+
+# 1. OpenClaw 安全加固与项目复盘
+
 
 > 本文档从 [README 主文档](../README.md) 拆出，含 **安全加固（4 层）**、**部署时间线**、**功能完成度**、**系统提示词裁剪决策**与**优缺点 / Token 评估**。  
 > 返回 [项目总览](../README.md)
 
 ---
 
-<h1 align="center">目录</h1>
+
+# 2. 目录
+
 
 - [安全加固：4 层纵深防御详解](#安全加固4-层纵深防御详解)
 - [部署时间线](#部署时间线)
@@ -19,9 +23,11 @@
 
 <a id="安全加固4-层纵深防御详解"></a>
 
-<h1 align="center">安全加固：4 层纵深防御详解</h1>
 
-## 风险分析
+# 3. 安全加固：4 层纵深防御详解
+
+
+## 3.1. 风险分析
 
 OpenClaw 作为 AI Agent 拥有 shell 执行能力，默认配置下权限几乎不受限：
 
@@ -33,7 +39,7 @@ OpenClaw 作为 AI Agent 拥有 shell 执行能力，默认配置下权限几乎
 | NAS 全量存储 | AI 可读取所有 NAS 文件（视频、照片、文档） | 中 |
 | SOUL.md / AGENTS.md | 软性规则（"不要删文件"），模型可能无视 | 低（仅约束力） |
 
-## 已实施的安全措施（4 层防御）
+## 3.2. 已实施的安全措施（4 层防御）
 
 ### 第 1 层：Exec Approvals（框架级白名单）
 
@@ -145,7 +151,9 @@ function validateCommand(cmd: string): void {
 
 ---
 
-<h1 align="center">部署时间线</h1>
+
+# 4. 部署时间线
+
 
 | 状态 | 时间 | 里程碑 |
 |:----:|------|--------|
@@ -209,7 +217,9 @@ function validateCommand(cmd: string): void {
 
 ---
 
-<h1 align="center">功能完成度总览</h1>
+
+# 5. 功能完成度总览
+
 
 | 状态 | 功能 | 说明 |
 |:----:|------|------|
@@ -238,9 +248,11 @@ function validateCommand(cmd: string): void {
 
 <a id="系统提示词裁剪决策记录2026-02-11"></a>
 
-<h1 align="center">系统提示词裁剪决策记录（2026-02-11）</h1>
 
-## 背景
+# 6. 系统提示词裁剪决策记录（2026-02-11）
+
+
+## 6.1. 背景
 
 在部署本地 Qwen3-8B-AWQ 阶段，上下文窗口仅 24K tokens，而 OpenClaw 默认加载的系统提示词 + 工具 Schema 高达 ~14K tokens（34 个工具），留给实际对话的空间仅 ~10K tokens，8B 模型频繁出现空回复或上下文溢出。
 
@@ -248,7 +260,7 @@ function validateCommand(cmd: string): void {
 
 > **后续演进**：裁剪完成后经过 8B vs 14B 对比测试，最终决定回归纯云端 DashScope Qwen3-14B API。14B 拥有 131K 上下文窗口，裁剪后的 23 工具不再是上下文瓶颈，但精简后的工具集更加聚焦实用，因此保留裁剪成果。
 
-## 裁剪前状态
+## 6.2. 裁剪前状态
 
 | 类别 | 数量 | 占用 |
 |------|:----:|------|
@@ -257,7 +269,7 @@ function validateCommand(cmd: string): void {
 | 自定义 Function Calling 工具 | 5 个 | ~3K tokens |
 | **总计** | **34 个** | **~14K tokens** |
 
-## 裁剪决策
+## 6.3. 裁剪决策
 
 ### 第一刀：删除全部自定义工具（5 个 → 0 个）
 
@@ -357,11 +369,13 @@ if (toolsCfg?.doc === false) {
 
 <a id="openclaw-优缺点评估实测总结"></a>
 
-<h1 align="center">OpenClaw 优缺点评估（实测总结）</h1>
+
+# 7. OpenClaw 优缺点评估（实测总结）
+
 
 > 经过 4 天的完整部署、开发、测试和迭代（2/8 ~ 2/11），对 OpenClaw 的能力和局限有了深刻认识。以下是基于实战经验的客观评估。
 
-## 优点
+## 7.1. 优点
 
 | 维度 | 评价 |
 |------|------|
@@ -374,7 +388,7 @@ if (toolsCfg?.doc === false) {
 | **部署轻量** | Node.js 单进程，内存占用 ~50MB（不含模型），ARM64 NAS 也能流畅运行 |
 | **社区活跃** | 2026 年热门开源项目，文档完善，安装工具成熟（OpenClawInstaller） |
 
-## 缺点与 Token 浪费问题
+## 7.2. 缺点与 Token 浪费问题
 
 这是决定暂停 OpenClaw 的核心原因——**Token 成本结构不合理**，对云端 API 用户极不友好。
 
@@ -437,7 +451,7 @@ OpenClaw 的 AGENTS.md 默认指导 AI 在每次新会话时：
 | 开发成本 | 低（配置即用） | 高（需写代码） |
 | Token 效率 | **低**（60% 系统开销） | **高**（95% 有效对话） |
 
-## 结论
+## 7.3. 结论
 
 **OpenClaw 是一个优秀的 AI Agent 框架**——如果你使用的是无限上下文的本地模型（如 Ollama + 大显存 GPU）或不在意 API 成本的场景，它的工具系统、渠道接入、安全机制都非常成熟。
 

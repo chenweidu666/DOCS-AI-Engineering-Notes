@@ -1,6 +1,8 @@
 <!-- 文档同步自 https://github.com/chenweidu666/OpenClaw-Deployment-Issues 分支 main — 请勿手工与上游长期双轨编辑 -->
 
-<h1 align="center">OpenClaw Skill 开发指南：AI 能力无限扩展</h1>
+
+# 1. OpenClaw Skill 开发指南：AI 能力无限扩展
+
 
 > 本文档详细介绍 OpenClaw 的 Skill 系统——如何用 Markdown + Shell 脚本给 AI 增加全新能力。
 >
@@ -8,7 +10,9 @@
 
 ---
 
-<h1 align="center">目录</h1>
+
+# 2. 目录
+
 
 - [1. Skill 系统概述](#1-skill-系统概述)
   - [1.1 什么是 Skill](#11-什么是-skill)
@@ -19,9 +23,11 @@
 
 ---
 
-<h1 align="center">Skill 系统概述</h1>
 
-## 1 什么是 Skill
+# 3. Skill 系统概述
+
+
+## 3.1. 1 什么是 Skill
 
 **Skill 系统是 OpenClaw 的杀手级特性。** 一个 Markdown 文件 + 一个 Shell 脚本，就能给 AI 增加一种全新能力——不需要改一行 OpenClaw 源码。
 
@@ -93,9 +99,11 @@ metadata: { "openclaw": { "emoji": "🔧", "requires": { "bins": ["bash"] } } }
 
 ---
 
-<h1 align="center">实战案例与总览</h1>
 
-## 1 Skill 总览（历史记录）
+# 4. 实战案例与总览
+
+
+## 4.1. 1 Skill 总览（历史记录）
 
 > **以下 5 个 Skill 均已于 2026-02-11 清理**，保留此表作为开发参考。
 
@@ -115,7 +123,9 @@ metadata: { "openclaw": { "emoji": "🔧", "requires": { "bins": ["bash"] } } }
 
 ---
 
-<h1 align="center">更多 Skill 思路</h1>
+
+# 5. 更多 Skill 思路
+
 
 基于同样的模式，可以继续开发：
 

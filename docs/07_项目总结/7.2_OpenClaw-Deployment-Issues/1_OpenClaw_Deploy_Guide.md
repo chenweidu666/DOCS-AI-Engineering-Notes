@@ -1,6 +1,8 @@
 <!-- 文档同步自 https://github.com/chenweidu666/OpenClaw-Deployment-Issues 分支 main — 请勿手工与上游长期双轨编辑 -->
 
-<h1 align="center">OpenClaw 环境构建与 API 配置</h1>
+
+# 1. OpenClaw 环境构建与 API 配置
+
 
 > 本文档覆盖 OpenClaw 的完整部署流程：从选型对比、硬件准备，到安装部署、接入阿里云 Qwen3 大模型、配置 Nginx HTTPS Web UI。
 >
@@ -8,7 +10,9 @@
 
 ---
 
-<h1 align="center">目录</h1>
+
+# 2. 目录
+
 
 - [1. 为什么选 OpenClaw？](#1-为什么选-openclaw)
 - [2. 硬件与系统准备](#2-硬件与系统准备)
@@ -18,7 +22,9 @@
 
 ---
 
-<h1 align="center">为什么选 OpenClaw？</h1>
+
+# 3. 为什么选 OpenClaw？
+
 
 2026 年初，AI 助手平台百花齐放。在对比了多个方案后，我选择了 OpenClaw，原因如下：
 
@@ -36,11 +42,13 @@
 
 ---
 
-<h1 align="center">硬件与系统准备</h1>
+
+# 4. 硬件与系统准备
+
 
 > 这一章是为 OpenClaw 准备运行环境。如果你已经有一台 Linux 服务器或 VPS，可以直接跳到 [第 3 章：安装 OpenClaw](#3-安装-openclaw)。
 
-## 我的硬件：绿联 DH4300+ NAS
+## 4.1. 我的硬件：绿联 DH4300+ NAS
 
 | 项目 | 规格 |
 |------|------|
@@ -52,7 +60,7 @@
 
 最初使用 Surface Pro 5（i5-7300U / 8GB）作为调度中心，但 2 核 4 线程在多服务场景下负载极高，watchdog 反复触发重启，系统极不稳定。**绿联 DH4300+ 就是绿联旗下的 NAS 机型**（RK3588C 8 核 + 8GB 内存），本就是为 7×24 运行设计的存储设备，磁盘 I/O 极强（2.1 GB/s），足以运行 OpenClaw Gateway，存储与调度合为一体。
 
-## 环境要求
+## 4.2. 环境要求
 
 NAS 运行 Debian 12，可通过 SSH 管理。我们只需要确保：
 
@@ -72,7 +80,9 @@ NAS 运行 Debian 12，可通过 SSH 管理。我们只需要确保：
 
 ---
 
-<h1 align="center">安装 OpenClaw</h1>
+
+# 5. 安装 OpenClaw
+
 
 这是最激动人心的部分——几条命令就能把 AI 助手跑起来。
 
@@ -88,7 +98,7 @@ NAS 运行 Debian 12，可通过 SSH 管理。我们只需要确保：
 >
 > 此外还有桌面版 **[OpenClaw Manager](https://github.com/miaoxworld/openclaw-manager)**（基于 Tauri 2.0 + React），提供图形界面管理。
 
-## 1 克隆安装工具
+## 5.1. 1 克隆安装工具
 
 ```bash
 git clone https://github.com/miaoxworld/OpenClawInstaller.git
@@ -132,17 +142,19 @@ chmod +x install.sh config-menu.sh
 
 ---
 
-<h1 align="center">接入阿里云 Qwen3 大模型</h1>
+
+# 6. 接入阿里云 Qwen3 大模型
+
 
 OpenClaw 支持任何 OpenAI 兼容的 API。当前方案使用**阿里云 DashScope Qwen3-14B 作为主力模型**（纯云端推理），Qwen3-32B 作为可选升级。
 
-## 1 获取 API Key
+## 6.1. 1 获取 API Key
 
 1. 访问 [阿里云 DashScope 控制台](https://dashscope.console.aliyun.com/)
 2. 开通 DashScope 服务（有免费额度）
 3. 在「API-KEY 管理」中创建 API Key
 
-## 2 配置环境变量
+## 6.2. 2 配置环境变量
 
 编辑 `~/.openclaw/env`：
 
@@ -246,7 +258,9 @@ openclaw agent --agent main --message "你好，你是什么模型？"
 
 ---
 
-<h1 align="center">Nginx HTTPS：局域网 Web UI 访问</h1>
+
+# 7. Nginx HTTPS：局域网 Web UI 访问
+
 
 > 详细内容已独立成文档，详见：**[Nginx HTTPS 配置指南](./3_OpenClaw_Nginx_WebUI.md)**
 

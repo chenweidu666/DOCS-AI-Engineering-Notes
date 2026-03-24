@@ -1,6 +1,8 @@
 <!-- 文档同步自 https://github.com/chenweidu666/OpenClaw-Deployment-Issues 分支 main — 请勿手工与上游长期双轨编辑 -->
 
-<h1 align="center">OpenClaw 原生工具插件开发：从上下文依赖到 Function Calling</h1>
+
+# 1. OpenClaw 原生工具插件开发：从上下文依赖到 Function Calling
+
 
 > **⛔ 状态更新（2026-02-11）**：所有 5 个自定义工具已**全部清理**，插件框架保留。原因：切换到本地 Qwen3-8B 模型后上下文窗口有限（24K tokens），需精简系统提示词（34 工具 → 23 工具）。本文保留作为**开发方法论参考**，记录了完整的插件开发、调试、踩坑过程，后续如需重新开发轻量工具可直接复用。
 >
@@ -10,7 +12,9 @@
 
 ---
 
-<h1 align="center">目录</h1>
+
+# 2. 目录
+
 
 - [1. 为什么需要原生工具](#1-为什么需要原生工具)
   - [1.1 Skill 系统的问题](#11-skill-系统的问题)
@@ -39,9 +43,11 @@
 
 ---
 
-<h1 align="center">为什么需要原生工具</h1>
 
-## 1 Skill 系统的问题
+# 3. 为什么需要原生工具
+
+
+## 3.1. 1 Skill 系统的问题
 
 OpenClaw 的 Skill 系统设计优雅——一个 Markdown + 一个脚本就能扩展 AI 能力。但它从底层就是**上下文依赖**的：
 
@@ -95,9 +101,11 @@ OpenClaw 插件系统的 `api.registerTool()` 可以注册真正的 function cal
 
 ---
 
-<h1 align="center">插件架构</h1>
 
-## 1 整体原理
+# 4. 插件架构
+
+
+## 4.1. 1 整体原理
 
 ```mermaid
 flowchart LR
@@ -162,9 +170,11 @@ flowchart LR
 
 ---
 
-<h1 align="center">开发指南</h1>
 
-## 1 插件清单
+# 5. 开发指南
+
+
+## 5.1. 1 插件清单
 
 每个插件必须有 `openclaw.plugin.json`：
 
@@ -283,9 +293,11 @@ async execute(_id: string, params: { city?: string }) {
 
 ---
 
-<h1 align="center">配置与部署</h1>
 
-## 1 加载路径配置
+# 6. 配置与部署
+
+
+## 6.1. 1 加载路径配置
 
 > **重要**：OpenClaw 的插件发现不跟随符号链接（symlink）。
 
@@ -350,13 +362,15 @@ api.on("before_agent_start", (event: any, ctx: any) => {
 
 <a id="5-实战5-个原生工具"></a>
 
-<h1 align="center">实战：5 个原生工具（⛔ 已全部清理）</h1>
+
+# 7. 实战：5 个原生工具（⛔ 已全部清理）
+
 
 > **2026-02-11**：所有 5 个自定义工具已从 `index.ts` 中移除，Skills 目录和脚本也已删除。以下内容保留作为**开发参考**。
 >
 > **清理原因**：切换到本地 Qwen3-8B 后，24K token 上下文中系统提示占 ~14K（34 工具），对话空间不足。裁剪到 23 工具（~8K tokens）后，8B 模型才能稳定回复。
 
-## 工具总览（历史记录）
+## 7.1. 工具总览（历史记录）
 
 | 工具名 | 对应脚本 | 状态 | 删除原因 |
 |--------|----------|:----:|----------|
@@ -368,7 +382,7 @@ api.on("before_agent_start", (event: any, ctx: any) => {
 
 ---
 
-## 1 cw_system_info — 系统信息
+## 7.2. 1 cw_system_info — 系统信息
 
 **功能**：获取本机硬件、软件、温度、网络等真实系统信息，让 AI 回答的是实际数据而非"通用指导"。
 
@@ -903,9 +917,11 @@ scripts/qwen_billing/
 
 ---
 
-<h1 align="center">注意事项与踩坑</h1>
 
-## 插件发现不跟随符号链接
+# 8. 注意事项与踩坑
+
+
+## 8.1. 插件发现不跟随符号链接
 
 ❌ 不行：
 ```bash

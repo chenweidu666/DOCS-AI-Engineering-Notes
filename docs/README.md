@@ -1,7 +1,4 @@
-<p align="center"><strong>CW · Tech Docs</strong></p>
-
-
-
+<div style="text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;"><strong>CW · Tech Docs</strong></div>
 AI工程技术笔记，按大模型完整技术栈组织，共七章。
 
 | 章节 | 内容 |

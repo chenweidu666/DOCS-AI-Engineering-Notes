@@ -1,7 +1,4 @@
-<p align="center"><strong>第七章 · 项目总结</strong></p>
-
-
-
+<div style="text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;"><strong>第七章 · 项目总结</strong></div>
 本章 **`docs/07_项目总结/`** 仅收录两类**可随站点发布的项目长篇文档**（与主线教程分离，避免侧栏过长混排）：
 
 | 子目录 | 内容 | 上游 / 说明 |

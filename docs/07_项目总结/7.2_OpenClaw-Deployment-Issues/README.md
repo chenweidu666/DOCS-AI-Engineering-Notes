@@ -1,6 +1,8 @@
 <!-- 文档同步自 https://github.com/chenweidu666/OpenClaw-Deployment-Issues 分支 main — 请勿手工与上游长期双轨编辑 -->
 
-<h1 align="center">OpenClaw 部署指南与踩坑记录：NAS + 云端 API 私人 AI 助手完整实战</h1>
+
+# 1. OpenClaw 部署指南与踩坑记录：NAS + 云端 API 私人 AI 助手完整实战
+
 
 <p align="center">
   <img src="images/openclaw_logo.png" alt="OpenClaw Logo" width="200" />
@@ -14,7 +16,9 @@
 
 ---
 
-<h1 align="center">仓库结构</h1>
+
+# 2. 仓库结构
+
 
 ```
 OpenClaw-Deployment-Issues/
@@ -34,7 +38,9 @@ OpenClaw-Deployment-Issues/
 
 ---
 
-<h1 align="center">项目亮点</h1>
+
+# 3. 项目亮点
+
 
 - **NAS + 云端 API 架构**：绿联 NAS DH4300+（7×24 低功耗调度中心 + 5.4T 持久存储）+ 阿里云 DashScope Qwen3-14B API，轻量高效
 - **纯云端推理**：DashScope Qwen3-14B / 32B，131K 上下文窗口，当时测算极低成本（百万 token 约 ¥1.5 输入档，**以云厂商现网价目为准**），无需 GPU 硬件
@@ -48,7 +54,9 @@ OpenClaw-Deployment-Issues/
 
 ---
 
-<h1 align="center">系统架构</h1>
+
+# 4. 系统架构
+
 
 ```mermaid
 graph TB
@@ -88,7 +96,9 @@ sequenceDiagram
 
 ---
 
-<h1 align="center">自定义 Skill（已全部清理）</h1>
+
+# 5. 自定义 Skill（已全部清理）
+
 
 > **2026-02-11**：所有自定义 Skill 和工具已清理。原因：精简系统提示词、聚焦核心能力。原有 5 个自定义 Skill（system_info / weather / nas_search / personal_info / bilibili_summary）及其 Function Calling 工具已移除，后续根据需要重新开发。
 >
@@ -96,7 +106,9 @@ sequenceDiagram
 
 ---
 
-<h1 align="center">快速查找</h1>
+
+# 6. 快速查找
+
 
 - **遇到问题？** → [踩坑记录与实践](./docs/2_OpenClaw_Pitfalls_and_Practices.md#踩坑记录17-个案例)（17 则 + 最佳实践表）
 - **想快速部署？** → [快速开始](#快速开始) + [环境构建与 API 配置](./docs/1_OpenClaw_Deploy_Guide.md)
@@ -105,7 +117,9 @@ sequenceDiagram
 
 ---
 
-<h1 align="center">文档导航</h1>
+
+# 7. 文档导航
+
 
 | 序号 | 文档 | 内容概述 |
 |:----:|------|----------|
@@ -119,7 +133,9 @@ sequenceDiagram
 
 ---
 
-<h1 align="center">快速开始</h1>
+
+# 8. 快速开始
+
 
 ```bash
 # 1. 克隆安装工具
@@ -138,18 +154,20 @@ openclaw agent --agent main --message "你好"
 
 ---
 
-<h1 align="center">硬件清单与性能实测</h1>
+
+# 9. 硬件清单与性能实测
+
 
 | 设备 | 角色 | 规格 | 说明 |
 |------|------|------|------|
 | 绿联 DH4300+ NAS | **OpenClaw 调度中心 + 持久存储** | RK3588C / 8GB / 3.6T+1.8T 双卷 | Debian 12，7×24 运行，Docker 容器运行 Gateway + 飞书 + 存储一体 |
 | ~~RTX 3060 工作站~~ | ~~LLM 推理节点~~ | ~~i5-13490F / 32GB / RTX 3060 12GB~~ | 历史：曾用 vLLM 运行 Qwen3-8B-AWQ，后改为纯云端 API，不再作为推理节点 |
 
-## 为什么选 NAS 作为主机？
+## 9.1. 为什么选 NAS 作为主机？
 
 之前使用 Surface Pro 5 作为 OpenClaw Gateway 调度中心，但 2 核 4 线程的 i5-7300U 在启动多个服务时负载极高，触发 watchdog 反复重启，系统极不稳定。**绿联 DH4300+ 就是绿联旗下的 NAS 机型**（RK3588C 8 核 + 8GB 内存），本就是为 7×24 运行设计的存储设备，搭载完整 Debian 12，磁盘 I/O 极强，非常适合兼任 OpenClaw 的常驻调度中心。
 
-## NAS 存储路径
+## 9.2. NAS 存储路径
 
 NAS 双卷存储，OpenClaw Docker 容器通过只读挂载访问：
 
@@ -185,7 +203,9 @@ NAS 双卷存储，OpenClaw Docker 容器通过只读挂载访问：
 
 ---
 
-<h1 align="center">深入阅读（独立文档）</h1>
+
+# 10. 深入阅读（独立文档）
+
 
 以下内容已从 README **拆出**，避免单页过长；与下表 **不重复**，请按需打开。
 
@@ -208,7 +228,9 @@ NAS 双卷存储，OpenClaw Docker 容器通过只读挂载访问：
 
 ---
 
-<h1 align="center">参考链接</h1>
+
+# 11. 参考链接
+
 
 - [OpenClaw 官方仓库](https://github.com/openclaw/openclaw)
 - [OpenClaw 一键部署工具](https://github.com/miaoxworld/OpenClawInstaller)

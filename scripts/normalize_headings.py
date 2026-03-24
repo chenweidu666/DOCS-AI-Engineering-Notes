@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-全库标题规范化：
+[已弃用] 旧版「去数字 + 居中 <h1>」流水线。当前规范见 .cursor/rules/doc-heading-numbering.mdc，
+请使用：python3 scripts/apply_doc_format.py
+
+历史行为简述（勿在新稿上执行）：
 - 去掉标题前的数字编号（如 1.1.、1.2.1.）。
 - 原 ## 级小节 → 一级标题，使用 <h1 align="center">…</h1> 居中。
 - 原 ### → ##、#### → ### …（整体少一个 #）。

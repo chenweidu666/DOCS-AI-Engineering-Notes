@@ -1,6 +1,8 @@
 <!-- 文档同步自 https://github.com/chenweidu666/OpenClaw-Deployment-Issues 分支 main — 请勿手工与上游长期双轨编辑 -->
 
-<h1 align="center">Nginx HTTPS：局域网 Web UI 访问</h1>
+
+# 1. Nginx HTTPS：局域网 Web UI 访问
+
 
 > 本文档从 [环境构建与 API 配置](./1_OpenClaw_Deploy_Guide.md) 中独立出来，详细介绍如何通过 Nginx 反向代理让局域网设备访问 OpenClaw Web UI。
 >
@@ -8,7 +10,9 @@
 
 ---
 
-<h1 align="center">目录</h1>
+
+# 2. 目录
+
 
 - [1. 概述](#1-概述)
 - [2. 生成自签名 SSL 证书](#2-生成自签名-ssl-证书)
@@ -18,7 +22,9 @@
 
 ---
 
-<h1 align="center">概述</h1>
+
+# 3. 概述
+
 
 OpenClaw 自带一个功能丰富的 **Control UI**（Web 聊天界面），默认监听 `127.0.0.1:18789`。通过 Nginx 反向代理，可以让局域网内的手机、平板、其他电脑都能访问。
 
@@ -32,7 +38,9 @@ Nginx 反向代理 (自签名 SSL)
 OpenClaw Gateway
 ```
 
-<h1 align="center">生成自签名 SSL 证书</h1>
+
+# 4. 生成自签名 SSL 证书
+
 
 ```bash
 sudo mkdir -p /etc/nginx/ssl
@@ -44,7 +52,9 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 > 将 `192.168.1.100` 替换为你的服务器局域网 IP。
 
-<h1 align="center">配置 Nginx</h1>
+
+# 5. 配置 Nginx
+
 
 创建 `/etc/nginx/sites-available/openclaw`：
 
@@ -93,7 +103,9 @@ sudo ln -s /etc/nginx/sites-available/openclaw /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-<h1 align="center">配置 OpenClaw 允许外部来源</h1>
+
+# 6. 配置 OpenClaw 允许外部来源
+
 
 在 `~/.openclaw/openclaw.json` 中添加：
 
@@ -116,7 +128,9 @@ sudo nginx -t && sudo systemctl reload nginx
 
 > 首次访问时浏览器会提示证书不受信任（因为是自签名），点击「继续访问」即可。
 
-<h1 align="center">效果展示</h1>
+
+# 7. 效果展示
+
 
 <p align="center">
   <img src="../images/openclaw_webui_chat.png" alt="OpenClaw Web UI 聊天界面" width="800" />
