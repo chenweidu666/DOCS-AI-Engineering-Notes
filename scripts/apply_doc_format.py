@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-将 docs 下 Markdown 对齐 canonical：docs/01_基础层/1.1_大模型基础与架构.md
+将 docs 下 Markdown 对齐 canonical；1.1 主题已拆分为导读 + 1.1_01…05 分篇（见 docs/01_基础层/）
 
 - 篇名：居中 div + 2rem 粗体（不用 Markdown # 篇名）
 - 去掉文首/文末：导航、导读、关键词、本章性质、上一节/下一节/上一章/下一章 等 blockquote；
