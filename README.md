@@ -16,7 +16,7 @@ AI工程技术文档站，按大模型完整技术栈组织，共七章（第七
 | 一、基础层 | 1.1–1.4：动机与缩放 / Transformer / 主流选型 / 趋势与参考 |
 | 二、训练与微调 | 数据处理与预训练 / SFT / LoRA / RLHF / 分布式训练 |
 | 三、部署与推理 | KV Cache 与推理加速 / vLLM / INT量化 |
-| 四、RAG与知识库 | RAG / Milvus / LangChain |
+| 四、RAG与知识库 | 4.1：RAG、Milvus 与 LangChain（单篇） |
 | 五、Agent开发 | 工作流 / MCP / Dify / AppAgent（OpenClaw 见第七章） |
 | 六、工程化 | FastAPI / Docker / CI/CD |
 | 七、项目总结 | CineMaker 手册 · OpenClaw 部署实录（[`docs/07_项目总结/`](docs/07_项目总结/README.md)） |

@@ -27,9 +27,7 @@
 ---
 
 * **四、RAG 与知识库**
-  * [4.1 RAG 检索增强生成](docs/04_RAG与知识库/4.1_RAG检索增强生成.md)
-  * [4.2 Milvus 向量数据库](docs/04_RAG与知识库/4.2_Milvus向量数据库.md)
-  * [4.3 LangChain 应用开发](docs/04_RAG与知识库/4.3_LangChain应用开发.md)
+  * [4.1 RAG、Milvus 与 LangChain](docs/04_RAG与知识库/4.1_RAG检索增强生成.md)
 
 ---
 
