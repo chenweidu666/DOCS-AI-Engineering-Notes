@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .DS_Store
 scripts/last_sync.log
+_commit_debug.txt
