@@ -239,6 +239,9 @@ def main() -> int:
         raw = p.read_text(encoding="utf-8")
         new = transform(p, raw)
         if new != raw:
+            if len(raw.strip()) > 200 and len(new.strip()) < 30:
+                print(f"SKIP suspicious empty output: {p.relative_to(ROOT)}", file=sys.stderr)
+                continue
             p.write_text(new, encoding="utf-8")
             print(p.relative_to(ROOT))
             changed += 1
