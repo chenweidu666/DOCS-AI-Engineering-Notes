@@ -99,6 +99,22 @@ AI编译器原理与算子优化技术
 
 ---
 
+### 📦 **06_开源项目文档**
+GitHub 产品 / 开源仓 **Markdown 镜像**（无业务代码）：CineMaker、OpenClaw 部署文库、Smart-Wardrobe、IoT 方案及若干私有仓 README 索引。
+
+**入口**：[06_开源项目文档/README.md](./06_开源项目文档/README.md)
+
+**CineMaker 详细文档（与简历项目一致）**  
+- [产品工作流](./06_开源项目文档/CineMaker-AI-Platform/docs/guides/1_产品工作流.md)  
+- [技术架构](./06_开源项目文档/CineMaker-AI-Platform/docs/guides/2_技术架构.md)  
+- [提示词指南](./06_开源项目文档/CineMaker-AI-Platform/docs/guides/3_提示词指南.md)  
+- [火山引擎 API 申请](./06_开源项目文档/CineMaker-AI-Platform/docs/guides/4_火山引擎API申请指南.md)  
+- [仓库说明](./06_开源项目文档/CineMaker-AI-Platform/README.md) · [剧本格式规范](./06_开源项目文档/CineMaker-AI-Platform/docs/剧本/剧本格式规范.md)
+
+同步更新：`python3 scripts/fetch_github_docs.py` 后执行 `bash scripts/regen_sidebar.sh`。
+
+---
+
 ## 🎯 学习路径建议
 
 ### 路径 1：大模型部署工程师
@@ -134,7 +150,8 @@ AI编译器原理与算子优化技术
 | 03_RAG检索增强生成 | 4 篇 | 4 张 | 2026-03 |
 | 04_Agent智能体开发 | 11 篇 | 5 张 | 2026-03 |
 | 05_AI编译器与底层优化 | 0 篇 | - | - |
-| **总计** | **25 篇** | **15 张** | **2026-03** |
+| 06_开源项目文档 | 约 36 篇（MD 镜像） | - | 2026-03 |
+| **总计** | **约 61 篇** | **15 张** | **2026-03** |
 
 ---
 
@@ -165,6 +182,12 @@ git clone <your-repo-url>
 cd 3_技术文档
 
 # 使用 Typora 或 VS Code 打开 README.md
+```
+
+### 同步开源仓文档（仅 Markdown）
+```bash
+python3 scripts/fetch_github_docs.py
+bash scripts/regen_sidebar.sh
 ```
 
 ### 引用规范

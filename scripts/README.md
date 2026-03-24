@@ -4,6 +4,15 @@
 
 侧栏与搜索**不包含** `github文档仓库/`（已迁至 `1_陈纬简历/归档/github文档快照/`）、**不包含** `99_面试与学习资源/`（已迁至 `1_陈纬简历/归档/99_面试与学习资源/`）；`gen_sidebar.py` 的 `SKIP_DIRS` 已包含二者。
 
+**从 GitHub 拉取公开/私有 README 文档镜像**（不克隆代码）：
+
+```bash
+python3 scripts/fetch_github_docs.py
+bash scripts/regen_sidebar.sh
+```
+
+依赖：`gh` CLI（用于私有仓 README）；仅公开仓时可不用。
+
 新增或重命名 `.md` 后，刷新左侧导航：
 
 ```bash
