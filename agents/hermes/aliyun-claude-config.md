@@ -56,12 +56,14 @@ model:
   provider: "anthropic"
   api_key: "sk-sp-4a72cbac7f5d407eb9e0041e234fb563"
   base_url: "https://coding.dashscope.aliyuncs.com/apps/anthropic"
+  max_tokens: 4096  # 阿里云要求范围 [1, 65536]
 
 # OpenAI compatible settings for Qwen models
 openai:
   api_key: "sk-sp-4a72cbac7f5d407eb9e0041e234fb563"
   base_url: "https://coding.dashscope.aliyuncs.com/v1"
   model: "qwen3.5-plus"
+  max_tokens: 4096  # 阿里云要求范围 [1, 65536]
 ```
 
 ### 3.2 环境变量设置
@@ -153,6 +155,17 @@ source ~/.zshrc  # 或 source ~/.bashrc
 ### 6.4 命令未找到
 - 错误信息：`zsh: command not found: hermes`
 - 解决方案：确保 `~/.local/bin` 在 PATH 环境变量中，或重新安装 Hermes Agent
+
+### 6.5 max_tokens 参数错误
+- 错误信息：`Range of max_tokens should be [1, 65536]`
+- 解决方案：在 `config.yaml` 中明确设置 `max_tokens` 参数，推荐值为 4096
+- 配置示例：
+  ```yaml
+  model:
+    max_tokens: 4096
+  openai:
+    max_tokens: 4096
+  ```
 
 ## 7. 相关资源
 
